@@ -42,6 +42,41 @@ $(document).ready(function () {
         alert("Yay! Happy Valentine's Day! ❤️");
         // Or redirect: window.location.href = 'another-page.html';
     });
+
+    // Falling hearts and roses background animation
+    function createFallingItem() {
+        const item = document.createElement('div');
+        const isHeart = Math.random() > 0.5; // 50% chance for heart or rose
+        
+        if (isHeart) {
+            item.className = 'falling-heart';
+            item.innerHTML = '❤️';
+        } else {
+            item.className = 'falling-rose';
+            item.innerHTML = '🌹';
+        }
+        
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2-5 seconds
+        item.style.fontSize = Math.random() * 20 + 10 + 'px'; // 10-30px
+        document.body.appendChild(item);
+
+        // Remove item after animation
+        setTimeout(() => {
+            if (item.parentNode) {
+                item.parentNode.removeChild(item);
+            }
+        }, 5000);
+    }
+
+    // Create items every 300ms
+    setInterval(createFallingItem, 300);
+
+    const hour = new Date().getHours();
+if (hour >= 19 || hour <= 5) {
+  document.body.classList.add('night');
+}
+
 });
 
 
